@@ -55,15 +55,34 @@ const MODELS_SUPPORTING_OPENAI_RESPONSE_FORMAT = [
   "gpt-3.5-turbo",
   "gpt-3.5-turbo-instruct",
   "gpt-3.5-turbo-26k",
+  "gpt-4.5",
   "gpt-4.1-mini",
   "gpt-4.1-nano",
   "gpt-4.1",
+  "gpt-5",
+  "gpt-5-mini",
+  "gpt-5-nano",
+  "gpt-5-chat",
+  "gpt-5-codex",
+  "gpt-5-pro",
+  "gpt-5.1",
+  "gpt-5.1-chat",
+  "gpt-5.1-codex",
+  "gpt-5.1-codex-mini",
+  "gpt-5.1-codex-max",
+  "gpt-5.2",
+  "gpt-5.2-chat",
+  "gpt-5.2-codex",
+  "gpt-oss-120b",
+  "gpt-oss-20b",
   "o3",
   "o3-mini",
+  "o3-pro",
   "o4-mini",
   "o1",
   "o1-mini",
   "o1-preview",
+  "codex-mini",
 ];
 
 export const OpenAiConfigSchema = GenerationCommonConfigSchema.extend({
@@ -134,6 +153,262 @@ export const gpt45 = modelRef({
       multiturn: true,
       tools: true,
       media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5 = modelRef({
+  name: "azure-openai/gpt-5",
+  info: {
+    versions: ["gpt-5"],
+    label: "OpenAI - GPT-5",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5Mini = modelRef({
+  name: "azure-openai/gpt-5-mini",
+  info: {
+    versions: ["gpt-5-mini"],
+    label: "OpenAI - GPT-5 Mini",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5Nano = modelRef({
+  name: "azure-openai/gpt-5-nano",
+  info: {
+    versions: ["gpt-5-nano"],
+    label: "OpenAI - GPT-5 Nano",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5Chat = modelRef({
+  name: "azure-openai/gpt-5-chat",
+  info: {
+    versions: ["gpt-5-chat"],
+    label: "OpenAI - GPT-5 Chat",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5Codex = modelRef({
+  name: "azure-openai/gpt-5-codex",
+  info: {
+    versions: ["gpt-5-codex"],
+    label: "OpenAI - GPT-5 Codex",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt5Pro = modelRef({
+  name: "azure-openai/gpt-5-pro",
+  info: {
+    versions: ["gpt-5-pro"],
+    label: "OpenAI - GPT-5 Pro",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt51 = modelRef({
+  name: "azure-openai/gpt-5.1",
+  info: {
+    versions: ["gpt-5.1"],
+    label: "OpenAI - GPT-5.1",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt51Chat = modelRef({
+  name: "azure-openai/gpt-5.1-chat",
+  info: {
+    versions: ["gpt-5.1-chat"],
+    label: "OpenAI - GPT-5.1 Chat",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: false,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt51Codex = modelRef({
+  name: "azure-openai/gpt-5.1-codex",
+  info: {
+    versions: ["gpt-5.1-codex"],
+    label: "OpenAI - GPT-5.1 Codex",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt51CodexMini = modelRef({
+  name: "azure-openai/gpt-5.1-codex-mini",
+  info: {
+    versions: ["gpt-5.1-codex-mini"],
+    label: "OpenAI - GPT-5.1 Codex Mini",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt51CodexMax = modelRef({
+  name: "azure-openai/gpt-5.1-codex-max",
+  info: {
+    versions: ["gpt-5.1-codex-max"],
+    label: "OpenAI - GPT-5.1 Codex Max",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt52 = modelRef({
+  name: "azure-openai/gpt-5.2",
+  info: {
+    versions: ["gpt-5.2"],
+    label: "OpenAI - GPT-5.2",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt52Chat = modelRef({
+  name: "azure-openai/gpt-5.2-chat",
+  info: {
+    versions: ["gpt-5.2-chat"],
+    label: "OpenAI - GPT-5.2 Chat",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: false,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gpt52Codex = modelRef({
+  name: "azure-openai/gpt-5.2-codex",
+  info: {
+    versions: ["gpt-5.2-codex"],
+    label: "OpenAI - GPT-5.2 Codex",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gptOss120b = modelRef({
+  name: "azure-openai/gpt-oss-120b",
+  info: {
+    versions: ["gpt-oss-120b"],
+    label: "OpenAI - GPT-OSS 120B",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: false,
+      systemRole: true,
+      output: ["text", "json"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const gptOss20b = modelRef({
+  name: "azure-openai/gpt-oss-20b",
+  info: {
+    versions: ["gpt-oss-20b"],
+    label: "OpenAI - GPT-OSS 20B",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: false,
       systemRole: true,
       output: ["text", "json"],
     },
@@ -285,6 +560,38 @@ export const o3Mini = modelRef({
   configSchema: OpenAiConfigSchema,
 });
 
+export const o3Pro = modelRef({
+  name: "azure-openai/o3-pro",
+  info: {
+    versions: ["o3-pro"],
+    label: "OpenAI - o3 Pro",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
+export const codexMini = modelRef({
+  name: "azure-openai/codex-mini",
+  info: {
+    versions: ["codex-mini"],
+    label: "OpenAI - Codex Mini",
+    supports: {
+      multiturn: true,
+      tools: true,
+      media: true,
+      systemRole: true,
+      output: ["text"],
+    },
+  },
+  configSchema: OpenAiConfigSchema,
+});
+
 export const gpt35Turbo = modelRef({
   name: "azure-openai/gpt-3.5-turbo",
   info: {
@@ -307,7 +614,9 @@ export const SUPPORTED_GPT_MODELS = {
   o1: o1,
   o3: o3,
   "o3-mini": o3Mini,
+  "o3-pro": o3Pro,
   "o4-mini": o4Mini,
+  "codex-mini": codexMini,
   "gpt-4.1": gpt41,
   "gpt-4.1-mini": gpt41Mini,
   "gpt-4.1-nano": gpt41Nano,
@@ -315,6 +624,22 @@ export const SUPPORTED_GPT_MODELS = {
   "gpt-4o": gpt4o,
   "gpt-4o-mini": gpt4oMini,
   "gpt-4.5": gpt45,
+  "gpt-5": gpt5,
+  "gpt-5-mini": gpt5Mini,
+  "gpt-5-nano": gpt5Nano,
+  "gpt-5-chat": gpt5Chat,
+  "gpt-5-codex": gpt5Codex,
+  "gpt-5-pro": gpt5Pro,
+  "gpt-5.1": gpt51,
+  "gpt-5.1-chat": gpt51Chat,
+  "gpt-5.1-codex": gpt51Codex,
+  "gpt-5.1-codex-mini": gpt51CodexMini,
+  "gpt-5.1-codex-max": gpt51CodexMax,
+  "gpt-5.2": gpt52,
+  "gpt-5.2-chat": gpt52Chat,
+  "gpt-5.2-codex": gpt52Codex,
+  "gpt-oss-120b": gptOss120b,
+  "gpt-oss-20b": gptOss20b,
   "gpt-3.5-turbo": gpt35Turbo,
 };
 
