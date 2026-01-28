@@ -1,0 +1,31 @@
+{
+  "name": "genkitx-azure-openai-example",
+  "version": "0.29.0",
+  "description": "",
+  "main": "lib/index.js",
+  "private": true,
+  "scripts": {
+    "start": "node lib/index.js",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "genkit:dev": "cross-env GENKIT_ENV=dev npm run dev",
+    "genkit:start": "cross-env GENKIT_ENV=dev genkit start -- tsx --watch src/index.ts",
+    "dev": "export GENKIT_RUNTIME_ID=$(openssl rand -hex 8) && node lib/index.js 2>&1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "genkit": "^1.28.0",
+    "genkitx-azure-openai": "file:../"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/pdf-parse": "^1.1.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "genkit-cli": "^1.28.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "genkitx-azure-openai",
+  "description": "Genkit AI framework plugin for Azure OpenAI APIs.",
+  "keywords": [
+    "genkit",
+    "genkit-plugin",
+    "genkit-embedder",
+    "genkit-model",
+    "openai",
+    "gpt-4",
+    "gpt-4.1",
+    "o3",
+    "gpt",
+    "gpt-3.5",
+    "ai",
+    "genai",
+    "generative-ai"
+  ],
+  "version": "0.29.0",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genkit-ai/azure-foundry-js-plugin.git"
+  },
+  "author": "Xavier Portilla Edo",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@azure/openai": "^2.0.0",
+    "openai": "^6.16.0"
+  },
+  "peerDependencies": {
+    "genkit": "1.28.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.0",
+    "@types/node": "^25.0.3",
+    "eslint": "^9.14.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "typedoc": "^0.28.1",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
+  },
+  "types": "./lib/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/index.mjs",
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/cjs/index.js"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rimraf ./lib",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
+    "rename:esm": "./scripts/fix-mjs.sh",
+    "build": "npm run build:cjs && npm run build:esm",
+    "prepack": "npm run clean && npm run build",
+    "prettier": "prettier 'src/**/*.ts' --write",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "docs": "typedoc ./src/index.ts --out ./docs --tsconfig ./tsconfig.esm.json"
+  },
+  "gitHead": "4da11b05d2693c9f5dd0fd85b721afd1d2d8f381"
+}

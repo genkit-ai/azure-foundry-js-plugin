@@ -1,0 +1,26 @@
+name: "codeql"
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  analyze:
+    name: analyze
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+      with:
+        cache: npm
+        node-version: lts/*
+    - uses: github/codeql-action/init@v4
+    - uses: github/codeql-action/autobuild@v4
+    - uses: github/codeql-action/analyze@v4
