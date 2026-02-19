@@ -107,6 +107,30 @@ console.log(await response.text);
 
 For more detailed examples and the explanation of other functionalities, refer to the example in the [official Github repo of the plugin](examples/README.md) or in the [official Genkit documentation](https://genkit.dev/docs/get-started/).
 
+### Deploy as Azure Functions
+
+You can deploy Genkit flows as Azure Functions HTTP triggers using `onCallGenkit`. It auto-registers the function with `app.http()` using the flow name, handles CORS, supports streaming via SSE, and provides authentication via `ContextProvider`:
+
+```typescript
+import { genkit, z } from 'genkit';
+import { azureOpenAI, gpt4o, onCallGenkit } from 'genkitx-azure-openai';
+
+const ai = genkit({ plugins: [azureOpenAI()], model: gpt4o });
+
+const jokeFlow = ai.defineFlow(
+  { name: 'jokeFlow', inputSchema: z.object({ subject: z.string() }), outputSchema: z.object({ joke: z.string() }) },
+  async (input) => {
+    const { text } = await ai.generate({ prompt: `Tell me a joke about ${input.subject}` });
+    return { joke: text };
+  }
+);
+
+// Automatically registered as POST /api/jokeFlow
+export const jokeHandler = onCallGenkit(jokeFlow);
+```
+
+See the full [Azure Functions example](examples/azure-functions/) for streaming, authentication, and deployment instructions.
+
 ## Contributing
 
 Want to contribute to the project? That's awesome! Head over to our [Contribution Guidelines](CONTRIBUTING.md).
