@@ -2,7 +2,7 @@
  * Copyright 2026 Xavier Portilla Edo
  * Copyright 2026 Google LLC
  * Copyright 2026 Bloom Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -846,8 +846,9 @@ function fromOpenAiChoice(
   choice: ChatCompletion["choices"][0],
   jsonMode = false,
 ): CandidateData {
-  const toolRequestParts = choice.message.tool_calls?.map((toolCall: ChatCompletionMessageToolCall) =>
-    fromOpenAiToolCall(toolCall, choice),
+  const toolRequestParts = choice.message.tool_calls?.map(
+    (toolCall: ChatCompletionMessageToolCall) =>
+      fromOpenAiToolCall(toolCall, choice),
   );
   return {
     index: choice.index,
@@ -900,7 +901,13 @@ export function toOpenAiRequestBody(
   modelName: string,
   request: GenerateRequest,
 ) {
-  type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+  type JsonValue =
+    | string
+    | number
+    | boolean
+    | null
+    | JsonValue[]
+    | { [key: string]: JsonValue };
   const mapToSnakeCase = <T extends Record<string, JsonValue>>(
     obj: T,
   ): Record<string, JsonValue> => {
@@ -965,7 +972,8 @@ export function toOpenAiRequestBody(
     const typedKey = key as keyof typeof body;
     if (
       !body[typedKey] ||
-      (Array.isArray(body[typedKey]) && !(body[typedKey] as Array<unknown>).length)
+      (Array.isArray(body[typedKey]) &&
+        !(body[typedKey] as Array<unknown>).length)
     )
       delete body[typedKey];
   }

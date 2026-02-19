@@ -231,9 +231,7 @@ export interface FlowErrorResponse {
 /**
  * Union type for flow responses
  */
-export type AzureFunctionsFlowResponse<T> =
-  | FlowResponse<T>
-  | FlowErrorResponse;
+export type AzureFunctionsFlowResponse<T> = FlowResponse<T> | FlowErrorResponse;
 
 /**
  * Azure Functions handler type
@@ -477,9 +475,7 @@ function toRequestData<T>(request: HttpRequest, input: T): RequestData<T> {
  * @param flow - The Genkit flow to wrap
  * @returns A CallableAzureFunction with `handler`, `flow`, `run`, `stream`, and `flowName`
  */
-export function onCallGenkit<F extends Flow>(
-  flow: F,
-): CallableAzureFunction<F>;
+export function onCallGenkit<F extends Flow>(flow: F): CallableAzureFunction<F>;
 
 /**
  * Creates an Azure Functions handler for a Genkit flow with options.
@@ -784,7 +780,10 @@ export function onCallGenkit<C extends ActionContext, F extends Flow>(
     stream: (
       input: FlowInput<F>,
       options?: FlowRunOptions,
-    ): { stream: AsyncIterable<FlowStream<F>>; output: Promise<FlowOutput<F>> } => {
+    ): {
+      stream: AsyncIterable<FlowStream<F>>;
+      output: Promise<FlowOutput<F>>;
+    } => {
       return flow.stream(input, {
         context: options?.context,
       }) as unknown as {
@@ -795,7 +794,15 @@ export function onCallGenkit<C extends ActionContext, F extends Flow>(
   };
 
   // Auto-register the Azure Functions HTTP trigger using the flow name
-  const methods = (opts.httpMethods ?? ["POST", "OPTIONS"]) as ("GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS")[];
+  const methods = (opts.httpMethods ?? ["POST", "OPTIONS"]) as (
+    | "GET"
+    | "POST"
+    | "PUT"
+    | "DELETE"
+    | "PATCH"
+    | "HEAD"
+    | "OPTIONS"
+  )[];
   const authLevel = opts.authLevel ?? "anonymous";
 
   app.http(flowName, {
