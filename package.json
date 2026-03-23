@@ -25,12 +25,11 @@
   "author": "Xavier Portilla Edo",
   "license": "Apache-2.0",
   "dependencies": {
-    "@azure/openai": "^2.0.0",
     "openai": "^6.16.0"
   },
   "peerDependencies": {
     "@azure/functions": "^4.0.0",
-    "genkit": "1.28.0"
+    "genkit": "^1.28.0"
   },
   "peerDependenciesMeta": {
     "@azure/functions": {
@@ -44,20 +43,20 @@
     "eslint": "^10.0.2",
     "globals": "^17.2.0",
     "prettier": "^3.3.3",
-    "rimraf": "^6.0.1",
+    "tsup": "^8.0.2",
     "typedoc": "^0.28.1",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.2.0"
   },
-  "types": "./lib/types/index.d.ts",
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.mjs",
+  "types": "./lib/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
   "exports": {
     ".": {
-      "require": "./lib/cjs/index.js",
-      "import": "./lib/esm/index.mjs",
-      "types": "./lib/types/index.d.ts",
-      "default": "./lib/cjs/index.js"
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./lib/index.mjs",
+      "default": "./lib/index.js"
     }
   },
   "files": [
@@ -68,16 +67,15 @@
     "access": "public"
   },
   "scripts": {
-    "clean": "rimraf ./lib",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
-    "rename:esm": "./scripts/fix-mjs.sh",
-    "build": "npm run build:cjs && npm run build:esm",
-    "prepack": "npm run clean && npm run build",
+    "check": "tsc",
+    "compile": "tsup",
+    "build": "tsc && tsup",
+    "build:watch": "tsup --watch",
+    "prepack": "npm run build",
     "prettier": "prettier 'src/**/*.ts' --write",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "docs": "typedoc ./src/index.ts --out ./docs --tsconfig ./tsconfig.esm.json"
+    "docs": "typedoc ./src/index.ts --out ./docs"
   },
   "gitHead": "4da11b05d2693c9f5dd0fd85b721afd1d2d8f381"
 }
