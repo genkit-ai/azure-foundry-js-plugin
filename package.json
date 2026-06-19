@@ -39,7 +39,7 @@
   "devDependencies": {
     "@azure/functions": "^4.11.2",
     "@eslint/js": "^9.11.0",
-    "@types/node": "^25.0.3",
+    "@types/node": "^26.0.0",
     "eslint": "^10.0.2",
     "globals": "^17.2.0",
     "prettier": "^3.3.3",
